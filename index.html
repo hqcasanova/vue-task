@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta
+      property="dc:language"
+      content="en"
+    />
+    <meta
+      property="dc:date"
+      content="2023-07-10T12:00:00"
+    />
+    <meta
+      property="dc:creator"
+      content="HQCasanova"
+    />
+    <meta
+      property="dc:description"
+      name="description"
+      content="%VITE_META_DESCRIPTION%"
+    />
+    <meta
+      property="og:description"
+      name="description"
+      content="%VITE_META_DESCRIPTION%"
+    />
+    <meta
+      property="og:url"
+      content="%VITE_SERVER_URL%%BASE_URL%"
+    />
+    <meta
+      property="og:title"
+      content="%VITE_META_TITLE%"
+    />
+    <meta
+      property="og:image"
+      content="%VITE_SERVER_URL%%BASE_URL%social.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="%VITE_SERVER_URL%%BASE_URL%social.png"
+    />
+    <title>%VITE_META_TITLE%</title>
+    <style>
+      /* RESET */
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 100%;
+      }
+
+      html,
+      body,
+      div,
+      span,
+      object,
+      iframe,
+      figure,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      code,
+      em,
+      img,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      b,
+      u,
+      i,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      main,
+      canvas,
+      embed,
+      footer,
+      header,
+      nav,
+      section,
+      dd,
+      dt,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        text-size-adjust: none;
+      }
+
+      footer,
+      header,
+      nav,
+      section,
+      main {
+        display: block;
+      }
+
+      body {
+        line-height: 1;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      blockquote,
+      q {
+        quotes: none;
+      }
+
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: '';
+        content: none;
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+
+      textarea {
+        font-family: inherit;
+      }
+
+      input {
+        -webkit-appearance: none;
+        border-radius: 0;
+      }
+
+      button {
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+
+      /* CRITICAL */
+      .app {
+        max-width: 100%;
+        width: 720px;
+        margin: 3.125rem auto;
+        padding: 0 1rem;
+      }
+      .app__footer {
+        line-height: 1.5rem;
+      }
+    </style>
+  </head>
+  <body class="app">
+    <header class="app__heading">
+      <h1>%VITE_META_TITLE%</h1>
+    </header>
+    <div class="app__container"></div>
+    <footer class="app__footer">
+      <p>
+        Based on Code Vertiser's
+        <a href="https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app/"
+          >free challenge</a
+        >.
+      </p>
+      <p>
+        Check the
+        <a href="%VITE_SERVER_URL%%BASE_URL%">source here</a>.
+      </p>
+    </footer>
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </body>
+</html>
