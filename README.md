@@ -1,6 +1,6 @@
-# vue-jobs
+# Task challenge in Vue - Work in progress
 
-This template should help get you started developing with Vue 3 in Vite.
+Based on Code Vertiser's [free challenge](https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app).
 
 ## Recommended IDE Setup
 
