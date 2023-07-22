@@ -1,4 +1,4 @@
-let count = -1;
+let count = 0;
 
 const STATUSES = JSON.parse(import.meta.env.VITE_STATUSES);
 const PRIORITIES = JSON.parse(import.meta.env.VITE_PRIORITIES);
@@ -13,16 +13,19 @@ export default class {
   status: Status;
   progress: number;
 
-  constructor(
-    { title = 'Task', priority = PRIORITIES[0], status = STATUSES[0], progress = 0 },
-    id?: string
-  ) {
-    count++;
-    this.id = id || count.toString();
+  constructor({
+    id = count.toString(),
+    title = 'Task',
+    priority = PRIORITIES[0],
+    status = STATUSES[0],
+    progress = 0,
+  }) {
+    this.id = id;
     this.title = title;
     this.priority = priority;
     this.status = status;
     this.progress = progress;
+    count++;
   }
 }
 

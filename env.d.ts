@@ -5,5 +5,4 @@ interface ImportMetaEnv {
   VITE_SERVER_URL: string;
   VITE_STATUSES: string;
   VITE_PRIORITIES: string;
-  VITE_TASKS: string;
 }

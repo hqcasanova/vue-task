@@ -1,5 +1,5 @@
 {
-  "name": "vue-seed",
+  "name": "vue-task",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,8 +15,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "firebase": "^10.1.0",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.2"
+    "vue-router": "^4.2.2",
+    "vuefire": "^3.1.11"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",

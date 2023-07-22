@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import ActionModal from '@/components/structure/ActionModal.vue';
+import { computed, onMounted, ref } from 'vue';
+import HorizontalProgress from '@/components/ui/HorizontalProgress.vue';
 import ItemList from '@/components/structure/ItemList.vue';
 import TaskItem from '@/components/ui/TaskItem.vue';
-import useTasks from '@/composables/useTasks';
-import { computed, ref } from 'vue';
+import ActionModal from '@/components/structure/ActionModal.vue';
 
-const TASKS = JSON.parse(import.meta.env.VITE_TASKS);
-const { tasks, nextStatus, deleteTask } = useTasks(TASKS);
+import useTasks from '@/composables/useTasks';
+
+const { tasks, isLoading, fetchTasks, nextStatus, deleteTask } = useTasks();
 
 const idToDelete = ref<string>('');
 const taskTitle = computed(() => {
   const task = tasks.value.find((tsk) => tsk.id === idToDelete.value);
   return task?.title;
 });
+
+onMounted(fetchTasks);
 
 const onDelete = (id: string) => {
   idToDelete.value = id;
@@ -28,6 +31,8 @@ const onConfirmedDelete = () => {
 
 <template>
   <main>
+    <horizontal-progress :is-progress="isLoading" />
+
     <item-list
       :items="tasks"
       item-key="id"
@@ -57,13 +62,22 @@ const onConfirmedDelete = () => {
     <template #title> Delete &quot;{{ taskTitle }}&quot; </template>
 
     <template #default>
-      The task with the name above will be permanently removed from the current list of tasks. Are
-      you sure you want to delete it?
+      <p>
+        The task with the name above will be permanently removed from the current list of tasks. Are
+        you sure you want to delete it?
+      </p>
     </template>
   </ActionModal>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
+.horizontal-progress {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .item-list {
   margin: 1.5rem 0;
 }

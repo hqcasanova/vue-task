@@ -32,7 +32,7 @@ defineEmits<Emits>();
           <slot name="title"></slot>
         </h2>
 
-        <p class="action-modal__body"><slot></slot></p>
+        <div class="action-modal__body"><slot></slot></div>
 
         <slot name="actions">
           <div class="action-modal__actions actions">
