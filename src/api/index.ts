@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { ReCaptchaV3Provider } from 'firebase/app-check';
+import { ReCaptchaEnterpriseProvider } from 'firebase/app-check';
 import {
   getFirestore,
   collection,
@@ -40,7 +40,7 @@ export const taskDocRef = (id: string) =>
   doc(db, 'tasks', id).withConverter<Task, DocumentData>(converter);
 
 export const fireAppCheck = VueFireAppCheck({
-  provider: new ReCaptchaV3Provider('6LdInk0nAAAAAEKsjNfbVhbBN50XWvVZSuqn9IsV'),
+  provider: new ReCaptchaEnterpriseProvider('6LdInk0nAAAAAEKsjNfbVhbBN50XWvVZSuqn9IsV'),
   debug: import.meta.env.DEV,
   isTokenAutoRefreshEnabled: true,
 });
