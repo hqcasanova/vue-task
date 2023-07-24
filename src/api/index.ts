@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { ReCaptchaV3Provider } from 'firebase/app-check';
 import {
   getFirestore,
   collection,
@@ -7,7 +8,7 @@ import {
   QueryDocumentSnapshot,
   type SnapshotOptions,
 } from 'firebase/firestore';
-import { firestoreDefaultConverter } from 'vuefire';
+import { VueFireAppCheck, firestoreDefaultConverter } from 'vuefire';
 import Task from '@/models/Task';
 
 const firebaseConfig = {
@@ -32,9 +33,14 @@ const converter = {
 };
 
 export const firebaseApp = initializeApp(firebaseConfig);
-
 const db = getFirestore(firebaseApp);
 
 export const taskListRef = collection(db, 'tasks').withConverter<Task, DocumentData>(converter);
 export const taskDocRef = (id: string) =>
   doc(db, 'tasks', id).withConverter<Task, DocumentData>(converter);
+
+export const fireAppCheck = VueFireAppCheck({
+  provider: new ReCaptchaV3Provider('6LdInk0nAAAAAEKsjNfbVhbBN50XWvVZSuqn9IsV'),
+  debug: import.meta.env.DEV,
+  isTokenAutoRefreshEnabled: true,
+});
