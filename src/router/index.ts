@@ -10,7 +10,7 @@ const router = createRouter({
       component: TaskList,
       children: [
         {
-          path: 'task/:id',
+          path: 'task/:id?',
           name: 'edit',
           props: true,
           component: () => import('../views/TaskEdit.vue'),

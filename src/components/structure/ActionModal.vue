@@ -90,6 +90,10 @@ defineEmits<Emits>();
 
   &__title {
     margin: 0.5em 0 1em;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__body {
@@ -99,7 +103,7 @@ defineEmits<Emits>();
 
   .actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 
     &__ok {
       &:first-letter {
@@ -128,6 +132,10 @@ defineEmits<Emits>();
       color: $grey;
       border: 1px solid $lighter-grey;
       border-radius: 0.7em;
+    }
+
+    @media (min-width: 400px) {
+      justify-content: flex-end;
     }
   }
 }

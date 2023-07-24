@@ -1,9 +1,10 @@
 import { ref, type Ref } from 'vue';
-import { useCollection } from 'vuefire';
+import { useCollection, useDocument } from 'vuefire';
 import { deleteDoc, updateDoc, addDoc, FirestoreError } from '@firebase/firestore';
 import { taskDocRef, taskListRef } from '@/api';
 
 import Task from '@/models/Task';
+import { isStaticProperty } from 'vue/compiler-sfc';
 
 const STATUSES = JSON.parse(import.meta.env.VITE_STATUSES);
 const tasks = ref<Task[]>([]);
@@ -14,6 +15,8 @@ type UseTasks = {
   tasks: Ref<Task[]>;
   isLoading: Ref<boolean>;
   fetchTasks: () => Promise<any>;
+  fetchTask: (id: Task['id']) => Promise<any>;
+  updateTask: (id?: Task['id'], task?: Task) => Promise<any>;
   nextStatus: (id: Task['id']) => Promise<any>;
   deleteTask: (id: Task['id']) => Promise<any>;
 };
@@ -35,19 +38,46 @@ export default function (): UseTasks {
     }
   };
 
+  const fetchTask = async (id: Task['id']) => {
+    if (id.length === 0) {
+      return;
+    }
+
+    const task = tasks.value.find((task) => task.id === id);
+    if (task) {
+      return { ...task };
+    }
+
+    isLoading.value = true;
+    try {
+      error.value = '';
+      const doc = useDocument(taskDocRef(id));
+      return await doc.promise.value;
+    } catch (exception) {
+      error.value = (tasks as any).error.value;
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
   const updateTask = async (id?: Task['id'], task?: Task) => {
-    const isTaskEmpty = task && Object.keys(task).length > 0;
+    const isTaskEmpty = typeof task === 'undefined' || Object.keys(task).length === 0;
     isLoading.value = true;
 
     try {
       error.value = '';
 
       if (id && !isTaskEmpty) {
+        // A Firebase document's ID lives outside it => removes before sending
+        // TODO: this should be done at the converter level
+        const { id, ...taskWithoutId } = task;
+
         // Firebase's web client library doesn't support objects instantiated with new...()
         // Hence the explicit cloning as as POJO. https://stackoverflow.com/a/48158848
-        return await updateDoc(taskDocRef(id), { ...task });
+        return await updateDoc(taskDocRef(id), taskWithoutId);
       } else if (!id && !isTaskEmpty) {
-        return await addDoc(taskListRef, { ...task });
+        const { id, ...taskWithoutId } = task;
+        return await addDoc(taskListRef, taskWithoutId);
       } else if (id && isTaskEmpty) {
         return await deleteDoc(taskDocRef(id));
       } else if (!id && isTaskEmpty) {
@@ -91,6 +121,8 @@ export default function (): UseTasks {
     tasks,
     isLoading,
     fetchTasks,
+    fetchTask,
+    updateTask,
     nextStatus,
     deleteTask,
   };

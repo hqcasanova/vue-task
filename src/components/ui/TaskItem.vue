@@ -8,9 +8,10 @@ import { type Task } from '@/models/Task';
 export type Emits = {
   (e: 'status-next', keyValue: Task['id']): void;
   (e: 'delete', keyValue: Task['id']): void;
+  (e: 'edit', keyValue: Task): void;
 };
 
-defineProps<Task>();
+const props = defineProps<Task>();
 defineEmits<Emits>();
 </script>
 
@@ -30,7 +31,7 @@ defineEmits<Emits>();
     <task-prop class="task__status">
       <button
         type="button"
-        class="task__btn"
+        class="status__btn"
         @click="$emit('status-next', id)"
       >
         {{ status }}
@@ -42,14 +43,14 @@ defineEmits<Emits>();
     />
 
     <div class="task-prop task__actions">
-      <router-link :to="{ name: 'edit', params: { id } }">
-        <button
-          type="button"
-          class="task__edit"
-        >
-          <edit-icon />
-        </button>
-      </router-link>
+      <button
+        type="button"
+        class="task__edit"
+        @click="$emit('edit', props)"
+      >
+        <edit-icon />
+      </button>
+
       <button
         type="button"
         class="task__delete"
@@ -77,7 +78,7 @@ defineEmits<Emits>();
 
   .task-prop {
     display: inline-flex;
-    align-items: start;
+    align-items: center;
 
     &:not(:first-child) {
       margin-top: 1em;
@@ -105,7 +106,7 @@ defineEmits<Emits>();
     }
   }
 
-  &__btn {
+  .status__btn {
     @include button($lightest-grey);
     padding: 0.6em 1.2em;
     font-family: Arial, Helvetica, sans-serif;
@@ -132,6 +133,7 @@ defineEmits<Emits>();
   &__progress,
   &__actions {
     font-size: 1.4em;
+    color: $primary;
   }
 
   &__actions * {
