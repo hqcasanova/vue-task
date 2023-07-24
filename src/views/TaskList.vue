@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import useTasks from '@/composables/useTasks';
 import HorizontalProgress from '@/components/ui/HorizontalProgress.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
 import ItemList from '@/components/structure/ItemList.vue';
 import TaskItem from '@/components/ui/TaskItem.vue';
 import ActionModal from '@/components/structure/ActionModal.vue';
-
-import useTasks from '@/composables/useTasks';
-import { useRouter } from 'vue-router';
 
 import type Task from '@/models/Task';
 
