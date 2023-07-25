@@ -1,4 +1,4 @@
-# Task challenge in Vue - Work in progress
+# Task list challenge in Vue 3.3 + Firebase - Work in progress
 
 Based on Code Vertiser's [free challenge](https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app).
 
