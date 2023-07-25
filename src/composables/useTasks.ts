@@ -4,7 +4,6 @@ import { deleteDoc, updateDoc, addDoc, FirestoreError } from '@firebase/firestor
 import { taskDocRef, taskListRef } from '@/api';
 
 import Task from '@/models/Task';
-import { isStaticProperty } from 'vue/compiler-sfc';
 
 const STATUSES = JSON.parse(import.meta.env.VITE_STATUSES);
 const tasks = ref<Task[]>([]);
@@ -14,6 +13,7 @@ const isLoading = ref<boolean>(false);
 type UseTasks = {
   tasks: Ref<Task[]>;
   isLoading: Ref<boolean>;
+  error: Ref<string | FirestoreError | Error>;
   fetchTasks: () => Promise<any>;
   fetchTask: (id: Task['id']) => Promise<any>;
   updateTask: (id?: Task['id'], task?: Task) => Promise<any>;
@@ -120,6 +120,7 @@ export default function (): UseTasks {
   return {
     tasks,
     isLoading,
+    error,
     fetchTasks,
     fetchTask,
     updateTask,

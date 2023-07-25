@@ -2,6 +2,7 @@
 export type Props = {
   actionName?: string;
   actionType?: 'standard' | 'destructive';
+  isDisabledAction?: boolean;
 };
 
 export type Emits = {
@@ -12,6 +13,7 @@ export type Emits = {
 withDefaults(defineProps<Props>(), {
   actionName: 'Ok',
   actionType: 'standard',
+  isDisabledAction: false,
 });
 defineEmits<Emits>();
 </script>
@@ -47,6 +49,7 @@ defineEmits<Emits>();
               class="app-btn ml-4 py-2 px-4 text-white font-bold first-letter:uppercase leading-6 rounded-xl bg-primary-states"
               :class="{ 'bg-danger-states': actionType === 'destructive' }"
               type="button"
+              :disabled="isDisabledAction"
               @click="$emit('ok')"
             >
               {{ actionName }}

@@ -19,12 +19,19 @@ const { updateTask, fetchTask, isLoading } = useTasks();
 
 const task = ref<Task>(new Task({}));
 const isTouched = ref<boolean>(false);
+const isNotFound = ref<boolean>(false);
 const actionName = computed(() => (props.id ? 'edit' : 'add'));
 const isTitleBlank = computed(() => task.value.title.trim().length === 0);
 
 onMounted(async () => {
   if (props.id) {
-    task.value = await fetchTask(props.id);
+    const data = await fetchTask(props.id);
+
+    if (!data) {
+      isNotFound.value = true;
+    } else {
+      task.value = data;
+    }
   }
 });
 
@@ -43,8 +50,9 @@ const onConfirmedAction = () => {
 
 <template>
   <ActionModal
-    :actionName="actionName"
     actionType="standard"
+    :actionName="actionName"
+    :is-disabled-action="isLoading || isNotFound"
     @ok="onConfirmedAction"
     @cancel="onCancelAction"
   >
@@ -53,10 +61,11 @@ const onConfirmedAction = () => {
     <template #default>
       <form class="task-edit relative">
         <div
-          v-if="id && isLoading"
+          v-if="(actionName === 'edit' && isLoading) || isNotFound"
           class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-lighter-grey/60 backdrop-blur-sm"
+          :class="{ 'text-danger font-normal': isNotFound }"
         >
-          Loading data...
+          {{ isNotFound ? 'Task could not be found' : 'Loading task data...' }}
         </div>
 
         <label class="task-edit__entry">
@@ -64,7 +73,7 @@ const onConfirmedAction = () => {
           <input
             v-model="task.title"
             class="block w-full py-3.5 px-[1.125rem] font-normal bg-white border border-light-grey rounded-2xl hover:border-black focus:border-black outline-none"
-            :class="{ 'border-danger': isTouched && isTitleBlank }"
+            :class="{ 'border-dark-danger hover:border-dark-danger': isTouched && isTitleBlank }"
             @blur="isTouched = true"
           />
         </label>
