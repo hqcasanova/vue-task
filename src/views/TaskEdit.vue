@@ -59,7 +59,10 @@ const onConfirmedAction = () => {
     <template #title>{{ actionName }} task</template>
 
     <template #default>
-      <form class="task-edit relative">
+      <form
+        class="task-edit relative"
+        @submit.prevent="onConfirmedAction"
+      >
         <div
           v-if="(actionName === 'edit' && isLoading) || isNotFound"
           class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-lighter-grey/60 backdrop-blur-sm"
@@ -73,7 +76,7 @@ const onConfirmedAction = () => {
           <input
             v-model="task.title"
             class="block w-full py-3.5 px-[1.125rem] font-normal bg-white border border-light-grey rounded-2xl hover:border-black focus:border-black outline-none"
-            :class="{ 'border-dark-danger hover:border-dark-danger': isTouched && isTitleBlank }"
+            :class="{ '!border-dark-danger': isTouched && isTitleBlank }"
             @blur="isTouched = true"
           />
         </label>
