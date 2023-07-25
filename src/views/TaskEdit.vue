@@ -51,14 +51,20 @@ const onConfirmedAction = () => {
     <template #title>{{ actionName }} task</template>
 
     <template #default>
-      <div v-if="isLoading">Loading task data...</div>
+      <form class="task-edit relative">
+        <div
+          v-if="id && isLoading"
+          class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-lighter-grey/60 backdrop-blur-sm"
+        >
+          Loading data...
+        </div>
 
-      <form class="task-edit">
         <label class="task-edit__entry">
           <span class="task-edit__label">Task</span>
           <input
             v-model="task.title"
-            :class="['task-edit__field', { 'task-edit__field--error': isTouched && isTitleBlank }]"
+            class="block w-full py-3.5 px-[1.125rem] font-normal bg-white border border-light-grey rounded-2xl hover:border-black focus:border-black outline-none"
+            :class="{ 'border-danger': isTouched && isTitleBlank }"
             @blur="isTouched = true"
           />
         </label>
@@ -77,37 +83,13 @@ const onConfirmedAction = () => {
 </template>
 
 <style scoped lang="scss">
-@import '@/scss/variables.scss';
 .task-edit {
   &__entry {
-    margin-top: 1.5rem;
+    @apply mt-6;
   }
 
   &__label {
-    display: block;
-    margin-bottom: 0.625rem;
-    font-weight: 700;
-    color: $grey;
-  }
-
-  &__field {
-    display: block;
-    width: 100%;
-    padding: 1rem 1.125rem;
-    font-size: inherit;
-    background: $white;
-    border: 1px solid $light-grey;
-    border-radius: 1rem;
-    outline: none;
-
-    &:hover,
-    &:focus {
-      border-color: $black;
-    }
-
-    &--error {
-      border-color: $danger;
-    }
+    @apply block mb-2.5 font-bold text-grey;
   }
 }
 </style>

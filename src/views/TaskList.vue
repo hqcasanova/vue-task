@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import useTasks from '@/composables/useTasks';
-import HorizontalProgress from '@/components/ui/HorizontalProgress.vue';
+import LoadingBar from '@/components/ui/LoadingBar.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
 import ItemList from '@/components/structure/ItemList.vue';
 import TaskItem from '@/components/ui/TaskItem.vue';
@@ -40,18 +40,22 @@ const onConfirmedDelete = () => {
 </script>
 
 <template>
-  <main>
-    <horizontal-progress :is-progress="isLoading" />
+  <main class="task-list">
+    <loading-bar
+      class="z-10 fixed top-0 left-0"
+      :is-progress="isLoading"
+    />
 
     <button
-      class="task-list__add"
+      class="app-btn float-right flex items-center min-mobile-dims mt-[calc(-44px-1.5rem)] py-2 px-4 text-white rounded-2xl bg-primary-states"
       @click="onAdd"
     >
       <plus-icon />
-      <span class="add__label">Add task</span>
+      <span class="hidden 3xs:inline ml-2 font-semibold">Add task</span>
     </button>
 
     <item-list
+      class="my-6"
       :items="tasks"
       item-key="id"
     >
@@ -88,38 +92,3 @@ const onConfirmedDelete = () => {
     </template>
   </ActionModal>
 </template>
-
-<style scoped lang="scss">
-@import '@/scss/mixins.scss';
-
-.horizontal-progress {
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.task-list__add {
-  @include button($primary);
-  float: right;
-  display: flex;
-  align-items: center;
-  height: 48px;
-  margin-top: calc(-44px - 1.5rem);
-  border-radius: 1rem;
-
-  .add__label {
-    display: none;
-    margin-left: $base-spacing;
-    font-weight: 600;
-
-    @media (min-width: 340px) {
-      display: inline;
-    }
-  }
-}
-
-.item-list {
-  margin: 1.5rem 0;
-}
-</style>

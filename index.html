@@ -49,183 +49,29 @@
       content="%VITE_SERVER_URL%%BASE_URL%social.png"
     />
     <title>%VITE_META_TITLE%</title>
-    <style>
-      /* RESET */
-      *,
-      *:before,
-      *:after {
-        box-sizing: border-box;
-      }
-
-      html {
-        font-size: 100%;
-      }
-
-      body {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-      }
-
-      html,
-      body,
-      div,
-      span,
-      object,
-      iframe,
-      figure,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      blockquote,
-      pre,
-      a,
-      code,
-      em,
-      img,
-      small,
-      strike,
-      strong,
-      sub,
-      sup,
-      tt,
-      b,
-      u,
-      i,
-      ol,
-      ul,
-      li,
-      fieldset,
-      form,
-      label,
-      table,
-      caption,
-      tbody,
-      tfoot,
-      thead,
-      tr,
-      th,
-      td,
-      main,
-      canvas,
-      embed,
-      footer,
-      header,
-      nav,
-      section,
-      dd,
-      dt,
-      video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        text-size-adjust: none;
-      }
-
-      footer,
-      header,
-      nav,
-      section,
-      main {
-        display: block;
-      }
-
-      body {
-        line-height: 1;
-      }
-
-      ol,
-      ul {
-        list-style: none;
-      }
-
-      blockquote,
-      q {
-        quotes: none;
-      }
-
-      blockquote:before,
-      blockquote:after,
-      q:before,
-      q:after {
-        content: '';
-        content: none;
-      }
-
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-
-      textarea {
-        font-family: inherit;
-      }
-
-      input {
-        -webkit-appearance: none;
-        border-radius: 0;
-      }
-
-      button {
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        color: inherit;
-        border: none;
-        background: none;
-        cursor: pointer;
-      }
-
-      /* CRITICAL */
-      .app {
-        max-width: 100%;
-        width: 720px;
-        margin: 3.125rem auto;
-        padding: 0 1rem;
-        font-weight: 300;
-      }
-
-      h1 {
-        font-size: 2.25rem;
-        font-weight: 700;
-      }
-
-      h2 {
-        font-size: 1.6rem;
-        font-weight: 700;
-      }
-
-      .app__footer {
-        line-height: 1.5rem;
-      }
-    </style>
   </head>
-  <body class="app">
-    <header class="app__heading">
+
+  <body class="w-full max-w-3xl my-12 mx-auto px-4 font-light bg-lightest-grey">
+    <header>
       <h1>%VITE_META_TITLE%</h1>
     </header>
-    <div class="app__container"></div>
-    <footer class="app__footer">
+
+    <div id="app"></div>
+
+    <footer class="leading-6">
       <p>
         Based on Code Vertiser's
         <a href="https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app/"
           >free challenge</a
         >.
       </p>
+
       <p>
         Check the
         <a href="https://github.com/hqcasanova%BASE_URL%">source here</a>.
       </p>
     </footer>
+
     <script
       type="module"
       src="/src/main.ts"

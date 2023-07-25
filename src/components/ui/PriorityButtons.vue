@@ -15,10 +15,11 @@ const emit = defineEmits<Emits>();
 </script>
 
 <template>
-  <div class="priority-buttons">
+  <div class="priority-buttons flex flex-wrap">
     <label
       v-for="value in priorities"
       :key="`${idPrefix}-${value}`"
+      class="app-btn mr-2.5 mb-2.5 py-2 px-4 first-letter:uppercase font-medium border text-grey border-grey rounded-xl"
       :class="[
         'priority-buttons__btn',
         `priority-buttons__btn--${value}`,
@@ -38,57 +39,36 @@ const emit = defineEmits<Emits>();
 </template>
 
 <style scoped lang="scss">
-@import '@/scss/mixins.scss';
-
 .priority-buttons {
-  &__priorities {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   &__radio {
-    position: absolute;
+    @apply absolute pointer-events-none;
     clip: rect(0, 0, 0, 0);
-    pointer-events: none;
   }
 
   &__btn {
-    @include button();
-    opacity: 1;
-    margin: 0 $base-spacing $base-spacing 0;
-    font-weight: 500;
-    border-radius: 0.75rem;
-
-    &:first-letter {
-      text-transform: uppercase;
-    }
-
     &--low {
-      color: $ok;
-      border: 1px solid $ok;
+      @apply text-ok border-ok;
     }
     &--low#{&}--checked {
-      background-color: $ok;
+      @apply bg-ok;
     }
 
     &--medium {
-      color: $warning;
-      border: 1px solid $warning;
+      @apply text-warning border-warning;
     }
     &--medium#{&}--checked {
-      background-color: $warning;
+      @apply bg-warning;
     }
 
     &--high {
-      color: $danger;
-      border: 1px solid $danger;
+      @apply text-danger border-danger;
     }
     &--high#{&}--checked {
-      background-color: $danger;
+      @apply bg-danger;
     }
 
     &--checked {
-      color: $white;
+      @apply text-white bg-grey;
     }
   }
 }

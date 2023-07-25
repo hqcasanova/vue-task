@@ -18,33 +18,34 @@ defineEmits<Emits>();
 
 <template>
   <teleport to="body">
-    <div class="action-modal">
-      <div class="action-modal__content">
+    <div class="fixed top-0 bottom-0 left-0 right-0 flex bg-black/40">
+      <div class="relative w-[90%] max-w-[600px] m-auto p-8 bg-white rounded-3xl">
         <button
-          class="action-modal__close"
+          class="app-btn absolute top-2 right-2 min-mobile-dims text-secondary-states text-4.5xl font-normal"
           type="button"
           @click="$emit('cancel')"
         >
           &times;
         </button>
 
-        <h2 class="action-modal__title">
+        <h2 class="mt-3 mb-6 first-letter:uppercase">
           <slot name="title"></slot>
         </h2>
-
-        <div class="action-modal__body"><slot></slot></div>
+        <div class="my-8 leading-6"><slot></slot></div>
 
         <slot name="actions">
-          <div class="action-modal__actions actions">
+          <div class="flex justify-center 2xs:justify-end">
             <button
-              class="actions__cancel"
+              class="app-button py-2 px-4 text-secondary-states font-normal leading-6 border border-lighter-grey rounded-xl bg-secondary-states"
               type="button"
               @click="$emit('cancel')"
             >
               Cancel
             </button>
+
             <button
-              :class="`actions__ok actions__ok--${actionType}`"
+              class="app-btn ml-4 py-2 px-4 text-white font-bold first-letter:uppercase leading-6 rounded-xl bg-primary-states"
+              :class="{ 'bg-danger-states': actionType === 'destructive' }"
               type="button"
               @click="$emit('ok')"
             >
@@ -56,87 +57,3 @@ defineEmits<Emits>();
     </div>
   </teleport>
 </template>
-
-<style scoped lang="scss">
-@import '@/scss/mixins.scss';
-
-.action-modal {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  background: rgba($black, 0.4);
-
-  &__content {
-    position: relative;
-    width: 90%;
-    max-width: 600px;
-    margin: auto;
-    padding: 2em;
-    background: $white;
-    border-radius: 1.5em;
-  }
-
-  &__close {
-    position: absolute;
-    top: 0;
-    right: 0.5em;
-    @include button();
-    padding: 0;
-    font-size: 2.5em;
-  }
-
-  &__title {
-    margin: 0.5em 0 1em;
-
-    &:first-letter {
-      text-transform: uppercase;
-    }
-  }
-
-  &__body {
-    margin: 2em 0;
-    line-height: 1.5em;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: center;
-
-    &__ok {
-      &:first-letter {
-        text-transform: uppercase;
-      }
-
-      &--standard {
-        @include button($primary);
-      }
-
-      &--destructive {
-        @include button($danger);
-      }
-
-      &--standard,
-      &--destructive {
-        margin-left: 1em;
-        color: $white;
-        font-weight: 700;
-        border-radius: 0.7em;
-      }
-    }
-
-    &__cancel {
-      @include button($lightest-grey);
-      color: $grey;
-      border: 1px solid $lighter-grey;
-      border-radius: 0.7em;
-    }
-
-    @media (min-width: 400px) {
-      justify-content: flex-end;
-    }
-  }
-}
-</style>

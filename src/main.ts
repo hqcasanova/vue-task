@@ -3,6 +3,7 @@ import App from './App.vue';
 import { VueFire } from 'vuefire';
 import { firebaseApp, fireAppCheck } from './api';
 import router from './router';
+import './tailwind.css';
 
 const app = createApp(App);
 
@@ -12,4 +13,4 @@ app.use(VueFire, {
   modules: [fireAppCheck],
 });
 
-app.mount('.app__container');
+app.mount('#app');

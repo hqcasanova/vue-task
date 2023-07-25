@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .app-btn {
+    @apply text-center select-none outline-none disabled:pointer-events-none cursor-pointer;
+  }
+
+  .bg-primary-states {
+    @apply bg-primary hover:bg-dark-primary focus:bg-dark-primary active:bg-dark-primary disabled:bg-grey transition-colors;
+  }
+
+  .text-primary-states {
+    @apply text-primary hover:text-dark-primary focus:text-dark-primary active:text-dark-primary transition-colors;
+  }
+
+  .bg-secondary-states {
+    @apply bg-lightest-grey hover:bg-lighter-grey focus:bg-lighter-grey active:bg-lighter-grey disabled:bg-grey transition-colors;
+  }
+
+  .text-secondary-states {
+    @apply text-grey hover:text-black focus:text-black active:text-black transition-colors;
+  }
+
+  .bg-danger-states {
+    @apply bg-danger hover:bg-dark-danger focus:bg-dark-danger active:bg-dark-danger disabled:bg-grey transition-colors;
+  }
+
+  .bg-warning-states {
+    @apply bg-warning hover:bg-dark-warning focus:bg-dark-warning active:bg-dark-warning disabled:bg-grey transition-colors;
+  }
+
+  .bg-ok-states {
+    @apply bg-ok hover:bg-dark-ok focus:bg-dark-ok active:bg-dark-ok disabled:bg-grey transition-colors;
+  }
+
+  .min-mobile-dims {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+@layer base {
+  html {
+    @apply font-poppins;
+    font-size: 100%;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+
+  input {
+    @apply font-arial;
+  }
+
+  a {
+    @apply text-primary-states underline;
+  }
+}

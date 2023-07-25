@@ -26,13 +26,13 @@ const dashOffset = computed(
 
 <template>
   <svg
-    class="circular-progressbar"
+    class="circular-progressbar block"
     :width="sqSize"
     :height="sqSize"
     :viewBox="viewBox"
   >
     <circle
-      class="circular-progressbar__circle circular-progressbar__circle--background"
+      class="circular-progressbar__circle stroke-lighter-grey"
       :cx="circleCoord"
       :cy="circleCoord"
       :r="radius"
@@ -48,24 +48,16 @@ const dashOffset = computed(
 </template>
 
 <style scoped lang="scss">
-@import '@/scss/variables.scss';
 .circular-progressbar {
-  display: block;
-
   &__circle {
-    fill: none;
+    @apply fill-none;
     stroke-width: v-bind(strokeWidthString);
 
-    &--background {
-      stroke: $lighter-grey;
-    }
-
     &--progress {
-      stroke: $primary;
+      @apply stroke-primary transition-dashoffset;
       stroke-linecap: round;
       stroke-dasharray: v-bind(dashArray);
       stroke-dashoffset: v-bind(dashOffset);
-      transition: stroke-dashoffset $base-delay ease 0s;
     }
   }
 }

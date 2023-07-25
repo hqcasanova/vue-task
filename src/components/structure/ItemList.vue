@@ -9,7 +9,7 @@ const keyValue = (item: any) => item[props.itemKey];
 </script>
 
 <template>
-  <ul class="item-list">
+  <ul class="item-list flex flex-col">
     <template v-if="items.length">
       <li
         v-for="item in items"
@@ -21,20 +21,9 @@ const keyValue = (item: any) => item[props.itemKey];
 
     <li
       v-else
-      class="item-list--empty"
+      class="text-center"
     >
       <slot name="empty">No list items</slot>
     </li>
   </ul>
 </template>
-
-<style scoped lang="scss">
-.item-list {
-  display: flex;
-  flex-direction: column;
-
-  &--empty {
-    text-align: center;
-  }
-}
-</style>

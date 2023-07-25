@@ -26,40 +26,28 @@ const rootClass = computed(() => {
   <div :class="rootClass">
     <dt
       v-if="name.length"
-      class="task-prop__name"
+      class="mr-2 text-sm text-grey"
     >
       {{ name }}
     </dt>
-    <dd class="task-prop__value">
+    <dd class="leading-6">
       <slot></slot>
     </dd>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import '@/scss/variables.scss';
 .task-prop {
   &--low {
-    color: $ok;
+    @apply text-ok;
   }
 
   &--medium {
-    color: $warning;
+    @apply text-warning;
   }
 
   &--high {
-    color: $danger;
-  }
-
-  &__name {
-    margin-right: 0.5em;
-    font-size: 0.875em;
-    line-height: 1.5em;
-    color: $grey;
-  }
-
-  &__value {
-    line-height: 1.5em;
+    @apply text-danger;
   }
 }
 </style>

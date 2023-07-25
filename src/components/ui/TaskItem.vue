@@ -16,36 +16,45 @@ defineEmits<Emits>();
 </script>
 
 <template>
-  <dl class="task">
-    <task-prop name="Name">
+  <dl
+    class="task-item flex flex-col xs:flex-row xs:justify-between items-center mt-4 xs:mx-auto pt-6 px-7 font-normal bg-white rounded-3xl shadow-diffused shadow-grey/10"
+  >
+    <task-prop
+      name="Name"
+      class="flex items-center mb-6 xs:w-[170px] xs:flex-col xs:items-start"
+    >
       {{ title }}
     </task-prop>
+
     <task-prop
       name="Priority"
       :priority="priority"
+      class="flex items-center mb-6 xs:flex-col xs:items-start"
     >
-      <p class="task__priority">
+      <p class="text-sm font-bold first-letter:uppercase">
         {{ priority }}
       </p>
     </task-prop>
-    <task-prop class="task__status">
+
+    <task-prop class="flex items-center w-[100px] mb-6 justify-center text-center">
       <button
         type="button"
-        class="status__btn"
+        class="py-2 px-3.5 font-arial text-xs font-bold text-secondary-states border border-lighter-grey rounded-xl bg-secondary-states"
         @click="$emit('status-next', id)"
       >
         {{ status }}
       </button>
     </task-prop>
+
     <circular-progress
+      class="flex items-center mb-6 text-2xl"
       :percentage="progress"
-      class="task-prop task__progress"
     />
 
-    <div class="task-prop task__actions">
+    <div class="flex items-center mb-6 text-2xl">
       <button
         type="button"
-        class="task__edit"
+        class="mr-3.5 text-primary"
         @click="$emit('edit', props)"
       >
         <edit-icon />
@@ -53,7 +62,7 @@ defineEmits<Emits>();
 
       <button
         type="button"
-        class="task__delete"
+        class="text-danger"
         @click="$emit('delete', id)"
       >
         <delete-icon />
@@ -61,91 +70,3 @@ defineEmits<Emits>();
     </div>
   </dl>
 </template>
-
-<style scoped lang="scss">
-@import '@/scss/variables.scss';
-@import '@/scss/mixins.scss';
-
-.task {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1em;
-  padding: 1.38em 1.88em;
-  font-weight: 400;
-  background: $white;
-  border-radius: 1.5em;
-  box-shadow: 0 0.5em 3.6em rgba($grey, 0.1);
-
-  .task-prop {
-    display: inline-flex;
-    align-items: center;
-
-    &:not(:first-child) {
-      margin-top: 1em;
-    }
-  }
-
-  @media (min-width: 600px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1rem auto 0;
-
-    .task-prop {
-      display: block;
-      margin-top: 0 !important;
-
-      &:first-child {
-        width: 170px;
-      }
-
-      &.task__priority,
-      &.task__status {
-        width: 100px;
-      }
-    }
-  }
-
-  .status__btn {
-    @include button($lightest-grey);
-    padding: 0.6em 1.2em;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.75em;
-    font-weight: 700;
-    color: $grey;
-    border: 1px solid $lighter-grey;
-    border-radius: 0.7em;
-  }
-
-  &__priority {
-    font-size: 0.875em;
-    font-weight: 700;
-
-    &:first-letter {
-      text-transform: uppercase;
-    }
-  }
-
-  &__status {
-    text-align: center;
-  }
-
-  &__progress,
-  &__actions {
-    font-size: 1.4em;
-    color: $primary;
-  }
-
-  &__actions * {
-    display: inline-flex;
-  }
-
-  &__edit {
-    margin-right: 0.8em;
-  }
-
-  &__delete {
-    color: $danger;
-  }
-}
-</style>
