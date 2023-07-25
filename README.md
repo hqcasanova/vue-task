@@ -1,6 +1,6 @@
 # Task list challenge in Vue 3.3 + Firebase + Tailwind
 
-Based on Code Vertiser's [free React challenge](https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app). Firebase and Tailwind were not part of the challenge originally.
+Based on Code Vertiser's [free React challenge](https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app). Firebase and Tailwind were not part of the challenge originally. For an earlier semantic CSS version, head over to [this branch](https://github.com/hqcasanova/vue-task/tree/without_tailwind).
 
 ## Recommended IDE Setup
 
