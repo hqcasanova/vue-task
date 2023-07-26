@@ -2,6 +2,8 @@
 
 Based on Code Vertiser's [free React challenge](https://www.codevertiser.com/reactjs-challenge-4-crud-tasklist-app). Firebase and Tailwind were not part of the challenge originally. For an earlier semantic CSS version, head over to [this branch](https://github.com/hqcasanova/vue-task/tree/without_tailwind).
 
+This Vue version started out as a way to quench my curiosity for how much Firebase has changed since I last used it ages ago, in 2014 when Firebase wasn't even under Google's umbrella. In fact, you can check out the relevant Angular.js code in all its outdated glory  [here](https://github.com/hqcasanova/quizzer_api/blob/c67bfacf712c8611000faa6ac9073a9d41b5e668/app/assets/javascripts/app/factories.js#L13C33-L13C71).
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
